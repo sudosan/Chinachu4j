@@ -107,13 +107,15 @@ public class Chinachu4j{
 	}
 
 	// 録画中のキャプチャを取得
-	public String getRecordingImage(String id, String size) throws KeyManagementException, NoSuchAlgorithmException, IOException{
+	public String getRecordingImage(String id, String size, String type) throws KeyManagementException, NoSuchAlgorithmException, IOException{
 		if(id == null)
 			return null;
 		if(size == null)
 			size = "320x180";
-
-		return getServer(baseURL + "recording/" + id + "/preview.txt" + "?size=" + size);
+		//仕様書上はtxtの場合jpgとpngが指定できることになってる
+		if(type == null)
+			type = "jpg";
+		return getServer(baseURL + "recording/" + id + "/preview.txt" + "?size=" + size + "&type=" + type );
 	}
 
 	// 録画済みの取得
